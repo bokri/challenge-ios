@@ -8,10 +8,25 @@
 import Foundation
 import RxSwift
 
-public enum BankinManager {
+protocol BankinProtocol {
+    static func fetchBanks() -> Completable
+    static func banksDatabaseTokens(completion: @escaping ([Bank]) -> Void) -> DatabaseToken?
+    static func fetchNextPage() -> Completable
+    static func fetchBanksFromApi(nextUri: String?) -> Completable
+}
+
+class BankinManager: BankinProtocol {
+
+    class var storage: BankinStorageProtocol.Type {
+        return BankinStorageManager.self
+    }
+
+    class var apiClient: BankinApiProtocol.Type {
+        return BankinApiClient.self
+    }
     
     public static func fetchBanks() -> Completable {
-        return BankinStorageManager.haveBanks()
+        return storage.haveBanks()
             .flatMapCompletable { haveBanks in
                 if haveBanks {
                     return .empty()
@@ -22,11 +37,11 @@ public enum BankinManager {
     }
 
     public static func banksDatabaseTokens(completion: @escaping ([Bank]) -> Void) -> DatabaseToken? {
-        return BankinStorageManager.getBanks(completionHandler: completion)
+        return storage.getBanks(completionHandler: completion)
     }
 
     public static func fetchNextPage() -> Completable {
-        return BankinStorageManager.getWrapper()
+        return storage.getWrapper()
             .flatMapCompletable { wrapper in
                 if let nextUri = wrapper?.pagination?.nextUri {
                     return self.fetchBanksFromApi(nextUri: nextUri)
@@ -36,10 +51,10 @@ public enum BankinManager {
             }
     }
     
-    private static func fetchBanksFromApi(nextUri: String?) -> Completable {
-        return BankinApiClient.getBanks(nextUri: nextUri)
+    internal static func fetchBanksFromApi(nextUri: String?) -> Completable {
+        return apiClient.getBanks(nextUri: nextUri)
             .flatMapCompletable { banksWrapper in
-                return BankinStorageManager.addBanks(wrapper: banksWrapper)
+                return storage.addBanks(wrapper: banksWrapper)
             }
     }
 }

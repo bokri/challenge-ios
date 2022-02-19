@@ -1,0 +1,34 @@
+{
+  "resources": [
+    {
+      "id": 416,
+      "name": "BNP Paribas Privée",
+      "country_code": "FR",
+      "primary_color": "007942",
+      "secondary_color": "00AC7B",
+      "logo_url": "https://web.bankin.com/img/banks-logo/france/12_BNPParisbasParticulier@2x.png",
+      "authentication_type": "INTERNAL_CREDS",
+      "parent_name": "BNP",
+      "capabilities": [
+        "ais",
+        "single_transfer",
+        "single_payment"
+      ],
+      "transfer": {
+        "nb_max_transactions": 1,
+        "max_size_label": 140
+      },
+      "payment": {
+        "nb_max_transactions": 1,
+        "max_size_label": 140
+      },
+      "channel_type": [
+        "dsp2",
+        "direct_access"
+        ]
+    }
+  ],
+  "pagination": {
+    "next_uri": null
+  }
+}

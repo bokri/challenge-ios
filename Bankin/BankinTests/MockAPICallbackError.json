@@ -1,0 +1,5 @@
+{
+    "type": "missing_version_header",
+    "message": "Please provide API version in the Bankin-Version header in the format: \"YYYY-MM-DD\"",
+    "documentation_url": "https://docs.bridgeapi.io/"
+}

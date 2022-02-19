@@ -8,7 +8,11 @@
 import Foundation
 import RxSwift
 
-public enum BankinApiClient {
+protocol BankinApiProtocol {
+    static func getBanks(nextUri: String?) -> Single<BanksWrapper>
+}
+
+enum BankinApiClient: BankinApiProtocol {
     
     public static func getBanks(nextUri: String?) -> Single<BanksWrapper> {
         return Configuration.network

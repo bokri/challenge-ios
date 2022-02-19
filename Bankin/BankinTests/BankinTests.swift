@@ -7,30 +7,111 @@
 
 import XCTest
 @testable import Bankin
+import RxSwift
+import OHHTTPStubs
+import OHHTTPStubsSwift
 
 class BankinTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    private let disposeBag = DisposeBag()
+    private var expectation: XCTestExpectation!
+    private var httpStubsDescriptor: HTTPStubsDescriptor?
+    
+    override func setUp() {
+        HTTPStubs.removeAllStubs()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        HTTPStubs.removeAllStubs()
+        super.tearDown()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testSuccess() throws {
+        MockBankingStorageManager.haveBanksValue = true
+        self.expectation = expectation(description: "Test Success")
+        
+        MockBankinManager.fetchBanks()
+            .subscribe {
+                self.expectation.fulfill()
+                XCTAssert(true)
+            } onError: { _ in
+                self.expectation.fulfill()
+                XCTAssert(false)
+            }.disposed(by: self.disposeBag)
+        
+        wait(for: [self.expectation], timeout: 10)
+    }
+    
+    func testError() throws {
+        MockBankingStorageManager.haveBanksValue = false
+        self.expectation = expectation(description: "Test Error")
+        
+        MockBankinManager.fetchBanks()
+            .subscribe {
+                self.expectation.fulfill()
+                XCTAssert(false)
+            } onError: { error in
+                self.expectation.fulfill()
+                
+                if case NetworkError.networkError = error  {
+                    XCTAssert(true)
+                } else {
+                    XCTAssert(false)
+                }
+                
+            }.disposed(by: self.disposeBag)
+        
+        wait(for: [self.expectation], timeout: 10)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testDecodingSuccess() throws {
+        self.expectation = expectation(description: "Tests Decoding Success")
+
+        httpStubsDescriptor = stub(condition: isMethodGET()) { (_) -> HTTPStubsResponse in
+            let stubPath = OHPathForFile("MockAPICallbackSuccess.json", type(of: self))
+            return fixture(filePath: stubPath!, headers: ["Content-Type":"application/json"])
         }
-    }
 
+        BankinApiClient.getBanks(nextUri: nil)
+            .subscribe { banksWrapper in
+                self.expectation.fulfill()
+                
+                XCTAssert(banksWrapper.resources[0].id == 416)
+                XCTAssert(banksWrapper.resources[0].name == "BNP Paribas Privée")
+                XCTAssert(banksWrapper.resources[0].countryCode == "FR")
+                XCTAssert(banksWrapper.resources[0].logoUrl == "https://web.bankin.com/img/banks-logo/france/12_BNPParisbasParticulier@2x.png")
+            } onError: { error in
+                self.expectation.fulfill()
+                XCTAssert(false)
+            }.disposed(by: self.disposeBag)
+
+
+        wait(for: [self.expectation], timeout: 10)
+    }
+    
+    func testDecodingError() throws {
+        self.expectation = expectation(description: "Tests Decoding Error")
+
+        httpStubsDescriptor = stub(condition: isMethodGET()) { (_) -> HTTPStubsResponse in
+            let stubPath = OHPathForFile("MockAPICallbackError.json", type(of: self))
+            return fixture(filePath: stubPath!, headers: ["Content-Type":"application/json"])
+        }
+        
+            BankinApiClient.getBanks(nextUri: nil)
+                .subscribe { banksWrapper in
+                    self.expectation.fulfill()
+                    XCTAssert(false)
+                } onError: { error in
+                    self.expectation.fulfill()
+
+                    if case NetworkError.malformedJson = error {
+                        XCTAssert(true)
+                    } else {
+                        XCTAssert(false)
+                    }
+                    
+                }.disposed(by: self.disposeBag)
+
+        wait(for: [self.expectation], timeout: 10)
+    }
 }

@@ -15,6 +15,12 @@
 		E10BA73027C166C2008AB393 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10BA72F27C166C2008AB393 /* TableViewCell.swift */; };
 		E10BA73427C167A7008AB393 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E10BA73327C167A7008AB393 /* Kingfisher */; };
 		E10BA73627C17326008AB393 /* UICardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10BA73527C17326008AB393 /* UICardView.swift */; };
+		E113A8C427C194A200D3D45E /* MockBankingStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E113A8C327C194A200D3D45E /* MockBankingStorageManager.swift */; };
+		E113A8C627C1952800D3D45E /* MockApiClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E113A8C527C1952800D3D45E /* MockApiClientManager.swift */; };
+		E113A8C827C1959E00D3D45E /* MockBankinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E113A8C727C1959E00D3D45E /* MockBankinManager.swift */; };
+		E113A8CB27C1975D00D3D45E /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E113A8CA27C1975D00D3D45E /* OHHTTPStubsSwift */; };
+		E113A8CD27C1980000D3D45E /* MockAPICallbackSuccess.json in Resources */ = {isa = PBXBuildFile; fileRef = E113A8CC27C1980000D3D45E /* MockAPICallbackSuccess.json */; };
+		E113A8CF27C19A7F00D3D45E /* MockAPICallbackError.json in Resources */ = {isa = PBXBuildFile; fileRef = E113A8CE27C19A7F00D3D45E /* MockAPICallbackError.json */; };
 		E11CB24D27C0FDF2007FE51E /* ErrorViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11CB24C27C0FDF2007FE51E /* ErrorViewDelegate.swift */; };
 		E11CB25327C11B46007FE51E /* BaseNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11CB25227C11B46007FE51E /* BaseNetwork.swift */; };
 		E11CB25527C11BA2007FE51E /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11CB25427C11BA2007FE51E /* NetworkRouter.swift */; };
@@ -79,6 +85,11 @@
 		E10BA72D27C15713008AB393 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		E10BA72F27C166C2008AB393 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		E10BA73527C17326008AB393 /* UICardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICardView.swift; sourceTree = "<group>"; };
+		E113A8C327C194A200D3D45E /* MockBankingStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBankingStorageManager.swift; sourceTree = "<group>"; };
+		E113A8C527C1952800D3D45E /* MockApiClientManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiClientManager.swift; sourceTree = "<group>"; };
+		E113A8C727C1959E00D3D45E /* MockBankinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBankinManager.swift; sourceTree = "<group>"; };
+		E113A8CC27C1980000D3D45E /* MockAPICallbackSuccess.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockAPICallbackSuccess.json; sourceTree = "<group>"; };
+		E113A8CE27C19A7F00D3D45E /* MockAPICallbackError.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockAPICallbackError.json; sourceTree = "<group>"; };
 		E11CB24C27C0FDF2007FE51E /* ErrorViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewDelegate.swift; sourceTree = "<group>"; };
 		E11CB25227C11B46007FE51E /* BaseNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetwork.swift; sourceTree = "<group>"; };
 		E11CB25427C11BA2007FE51E /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
@@ -142,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E113A8CB27C1975D00D3D45E /* OHHTTPStubsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +294,11 @@
 			isa = PBXGroup;
 			children = (
 				E14E2AD527C0EE61008D9F9A /* BankinTests.swift */,
+				E113A8C327C194A200D3D45E /* MockBankingStorageManager.swift */,
+				E113A8C527C1952800D3D45E /* MockApiClientManager.swift */,
+				E113A8C727C1959E00D3D45E /* MockBankinManager.swift */,
+				E113A8CC27C1980000D3D45E /* MockAPICallbackSuccess.json */,
+				E113A8CE27C19A7F00D3D45E /* MockAPICallbackError.json */,
 			);
 			path = BankinTests;
 			sourceTree = "<group>";
@@ -401,6 +418,9 @@
 				E14E2AD327C0EE61008D9F9A /* PBXTargetDependency */,
 			);
 			name = BankinTests;
+			packageProductDependencies = (
+				E113A8CA27C1975D00D3D45E /* OHHTTPStubsSwift */,
+			);
 			productName = BankinTests;
 			productReference = E14E2AD127C0EE61008D9F9A /* BankinTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -462,6 +482,7 @@
 				E14E2AF627C0F16A008D9F9A /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				E10BA72227C1510C008AB393 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				E10BA73227C167A6008AB393 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				E113A8C927C1975C00D3D45E /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
 			);
 			productRefGroup = E14E2ABC27C0EE5F008D9F9A /* Products */;
 			projectDirPath = "";
@@ -492,6 +513,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E113A8CF27C19A7F00D3D45E /* MockAPICallbackError.json in Resources */,
+				E113A8CD27C1980000D3D45E /* MockAPICallbackSuccess.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,6 +570,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E113A8C627C1952800D3D45E /* MockApiClientManager.swift in Sources */,
+				E113A8C427C194A200D3D45E /* MockBankingStorageManager.swift in Sources */,
+				E113A8C827C1959E00D3D45E /* MockBankinManager.swift in Sources */,
 				E14E2AD627C0EE61008D9F9A /* BankinTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -906,6 +932,14 @@
 				version = 5.14.0;
 			};
 		};
+		E113A8C927C1975C00D3D45E /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AliSoftware/OHHTTPStubs";
+			requirement = {
+				kind = exactVersion;
+				version = 9.0.0;
+			};
+		};
 		E14E2AEE27C0EEA2008D9F9A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -952,6 +986,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E10BA73227C167A6008AB393 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		E113A8CA27C1975D00D3D45E /* OHHTTPStubsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E113A8C927C1975C00D3D45E /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubsSwift;
 		};
 		E14E2AEF27C0EEA2008D9F9A /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

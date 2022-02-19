@@ -9,7 +9,14 @@ import Foundation
 import RxSwift
 import RealmSwift
 
-public enum BankinStorageManager {
+protocol BankinStorageProtocol {
+    static func getBanks(completionHandler: @escaping ([Bank]) -> Void) -> DatabaseToken?
+    static func haveBanks() -> Single<Bool>
+    static func addBanks(wrapper: BanksWrapper) -> Completable
+    static func getWrapper() -> Single<BanksWrapper?>
+}
+
+enum BankinStorageManager: BankinStorageProtocol {
 
     public static func getBanks(completionHandler: @escaping ([Bank]) -> Void) -> DatabaseToken? {
         

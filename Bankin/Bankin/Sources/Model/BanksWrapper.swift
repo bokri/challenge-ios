@@ -25,6 +25,8 @@ public class BanksWrapper: Object, Codable {
         
         if let array = try? container?.decode([Bank].self, forKey: .resources) {
             self.resources.append(objectsIn: array)
+        } else {
+            throw NetworkError.malformedJson
         }
 
         self.pagination = try? container?.decode(Pagination.self, forKey: .pagination)
