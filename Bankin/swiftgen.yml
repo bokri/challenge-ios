@@ -1,0 +1,28 @@
+xcassets:
+  inputs:
+    - Bankin/Resources/Assets.xcassets
+    - Bankin/Resources/ColorAssets.xcassets
+  outputs:
+    templateName: swift4
+    output: Bankin/Sources/Generated/Assets.swift
+    params: 
+        publicAccess: public
+        enumName: Assets
+        imageType: ImageAsset
+        colorType: ColorAsset
+
+strings:
+  inputs: Bankin/Resources/en.lproj
+  outputs:
+    templateName: structured-swift4
+    output: Bankin/Sources/Generated/Strings.swift
+    params: 
+      publicAccess: public
+      enumName: Strings
+
+files:
+  inputs: Bankin/Resources/Lotties
+  filter: .+\.json$
+  outputs:
+    templateName: structured-swift5
+    output: Bankin/Sources/Generated/Lotties.swift

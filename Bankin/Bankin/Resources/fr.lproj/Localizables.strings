@@ -1,0 +1,14 @@
+/* 
+  Localizables.strings
+  Bankin
+
+  Created by Aymen Bokri on 19/02/2022.
+  
+*/
+"app_name" = "Bankin'";
+
+"generic_error_action" = "Réessayer tout de suite";
+
+"generic_error_description" = "Si les problèmes persistent, n'hésitez pas à fermer l'application puis à la relancer.";
+
+"generic_error_title" = "Oups ! Une erreur est survenue";
