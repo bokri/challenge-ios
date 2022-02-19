@@ -40,37 +40,3 @@ extension Array where Element == NSLayoutConstraint {
         }
     }
 }
-
-extension UIButton {
-    func setBackgroundColor(color: UIColor, forState: UIControl.State) {
-        self.clipsToBounds = true
-        UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
-        if let context = UIGraphicsGetCurrentContext() {
-            context.setFillColor(color.cgColor)
-            context.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
-            let colorImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            self.setBackgroundImage(colorImage, for: forState)
-        }
-    }
-}
-
-extension UITableView {
-    public func register<T: UITableViewCell>(cellType: T.Type) {
-        let className = cellType.className
-        self.register(cellType, forCellReuseIdentifier: className)
-    }
-
-    public func dequeueReusableCell<T: UITableViewCell>(with type: T.Type, for indexPath: IndexPath) -> T {
-        let cell = self.dequeueReusableCell(withIdentifier: type.className, for: indexPath) as! T
-        cell.contentView.isUserInteractionEnabled = false
-        return cell
-    }
-}
-
-
-extension NSObject {
-    public class var className: String {
-        return String(describing: self.classForCoder())
-    }
-}

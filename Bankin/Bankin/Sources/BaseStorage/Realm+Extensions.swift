@@ -30,6 +30,8 @@ extension Realm: StorageProtocol {
     ///
     /// - Parameter type: Type of Object to fetch
     /// - Parameter predicate: Predicate to filter the result
+    /// - Parameter orderBy: The parameter to order By
+    /// - Parameter ascending: Sorting in ascending or descending way
     /// - Parameter completionHandler: A method that will be executed once a change is occured in Database
     /// - Returns: The database notification token
     public func fetchObjects<T: Object>(type: T.Type,

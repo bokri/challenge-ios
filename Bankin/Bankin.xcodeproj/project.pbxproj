@@ -61,6 +61,12 @@
 		E14E2B1627C0F932008D9F9A /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14E2B1527C0F932008D9F9A /* Strings.swift */; };
 		E14E2B1827C0F93B008D9F9A /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14E2B1727C0F93B008D9F9A /* Assets.swift */; };
 		E14E2B1A27C0F944008D9F9A /* Lotties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14E2B1927C0F944008D9F9A /* Lotties.swift */; };
+		E1E9A1BB27C1A4220041B56E /* BankinProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E9A1BA27C1A4220041B56E /* BankinProtocol.swift */; };
+		E1E9A1BD27C1A5830041B56E /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E9A1BC27C1A5830041B56E /* UIButton+Extensions.swift */; };
+		E1E9A1BF27C1A5A00041B56E /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E9A1BE27C1A5A00041B56E /* UITableView+Extensions.swift */; };
+		E1E9A1C127C1A5BA0041B56E /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E9A1C027C1A5BA0041B56E /* NSObject+Extensions.swift */; };
+		E1E9A1C327C1A7FD0041B56E /* BankinApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E9A1C227C1A7FD0041B56E /* BankinApiProtocol.swift */; };
+		E1E9A1C627C1A81F0041B56E /* BankinStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E9A1C527C1A81F0041B56E /* BankinStorageProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +137,12 @@
 		E14E2B1527C0F932008D9F9A /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		E14E2B1727C0F93B008D9F9A /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		E14E2B1927C0F944008D9F9A /* Lotties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lotties.swift; sourceTree = "<group>"; };
+		E1E9A1BA27C1A4220041B56E /* BankinProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankinProtocol.swift; sourceTree = "<group>"; };
+		E1E9A1BC27C1A5830041B56E /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		E1E9A1BE27C1A5A00041B56E /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		E1E9A1C027C1A5BA0041B56E /* NSObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
+		E1E9A1C227C1A7FD0041B56E /* BankinApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankinApiProtocol.swift; sourceTree = "<group>"; };
+		E1E9A1C527C1A81F0041B56E /* BankinStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankinStorageProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +191,9 @@
 			isa = PBXGroup;
 			children = (
 				E10BA72D27C15713008AB393 /* UIView+Extensions.swift */,
+				E1E9A1BC27C1A5830041B56E /* UIButton+Extensions.swift */,
+				E1E9A1BE27C1A5A00041B56E /* UITableView+Extensions.swift */,
+				E1E9A1C027C1A5BA0041B56E /* NSObject+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -222,6 +237,7 @@
 			children = (
 				E11CB26A27C126CD007FE51E /* BankinRouter.swift */,
 				E11CB27627C136F7007FE51E /* BankinApiClient.swift */,
+				E1E9A1C227C1A7FD0041B56E /* BankinApiProtocol.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -230,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				E11CB27027C13455007FE51E /* BankinManager.swift */,
+				E1E9A1BA27C1A4220041B56E /* BankinProtocol.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -255,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				E11CB28027C14238007FE51E /* BankinStorageManager.swift */,
+				E1E9A1C527C1A81F0041B56E /* BankinStorageProtocol.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -552,16 +570,22 @@
 				E11CB25927C11D05007FE51E /* Alamofire+Extensions.swift in Sources */,
 				E11CB25327C11B46007FE51E /* BaseNetwork.swift in Sources */,
 				E14E2B1827C0F93B008D9F9A /* Assets.swift in Sources */,
+				E1E9A1BB27C1A4220041B56E /* BankinProtocol.swift in Sources */,
 				E11CB27E27C13A08007FE51E /* BanksWrapper.swift in Sources */,
 				E10BA73027C166C2008AB393 /* TableViewCell.swift in Sources */,
 				E14E2B1627C0F932008D9F9A /* Strings.swift in Sources */,
 				E14E2B1A27C0F944008D9F9A /* Lotties.swift in Sources */,
+				E1E9A1C327C1A7FD0041B56E /* BankinApiProtocol.swift in Sources */,
+				E1E9A1BF27C1A5A00041B56E /* UITableView+Extensions.swift in Sources */,
 				E11CB26F27C133DE007FE51E /* ViewDelegate.swift in Sources */,
 				E11CB25527C11BA2007FE51E /* NetworkRouter.swift in Sources */,
 				E10BA72B27C154CF008AB393 /* LoadingView.swift in Sources */,
 				E11CB27527C135FA007FE51E /* Configuration.swift in Sources */,
+				E1E9A1C127C1A5BA0041B56E /* NSObject+Extensions.swift in Sources */,
 				E11CB25B27C11D68007FE51E /* NetworkError.swift in Sources */,
 				E10BA73627C17326008AB393 /* UICardView.swift in Sources */,
+				E1E9A1C627C1A81F0041B56E /* BankinStorageProtocol.swift in Sources */,
+				E1E9A1BD27C1A5830041B56E /* UIButton+Extensions.swift in Sources */,
 				E14E2AFB27C0F1D0008D9F9A /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

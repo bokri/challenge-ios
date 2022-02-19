@@ -10,11 +10,11 @@ import Lottie
 
 public class LoadingView: UIView {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     private var animationView: AnimationView
 
-    // MARK: Constructors
+    // MARK: - Constructors
 
     public init() {
         self.animationView = AnimationView(name: Files.loadingJson.name)

@@ -11,7 +11,7 @@ import Lottie
 
 final public class ErrorView: UIView {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     private var titleLabel: UILabel
     private var animationView: AnimationView
@@ -20,7 +20,7 @@ final public class ErrorView: UIView {
 
     private weak var delegate: ErrorViewDelegate?
 
-    // MARK: Constructors
+    // MARK: - Constructors
 
     public init() {
         self.titleLabel = UILabel(frame: .zero)

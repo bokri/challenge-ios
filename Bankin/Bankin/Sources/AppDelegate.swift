@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window?.backgroundColor = Assets.ColorAssets.white.color
         
+        // Theme settings
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.backgroundColor = Assets.ColorAssets.blue.color

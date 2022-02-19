@@ -10,9 +10,14 @@ import UIKit
 import Kingfisher
 
 public class TableViewCell: UITableViewCell {
+    
+    // MARK: - Properties
+
     private var card: UICardView
     private var image: UIImageView
     private var name: UILabel
+    
+    // MARK: - Constructors
 
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         self.card = UICardView()
@@ -30,11 +35,15 @@ public class TableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Public Methods
+    
     public func setup(logoUrl: String, name: String) {
         self.name.text = name
         self.image.kf.setImage(with: URL(string: logoUrl),
                                placeholder: Assets.Assets.icBank.image)
     }
+    
+    // MARK: - Private Methods
     
     private func setupViews() {
         self.card.translatesAutoresizingMaskIntoConstraints = false

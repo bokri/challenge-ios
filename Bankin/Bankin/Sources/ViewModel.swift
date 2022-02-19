@@ -10,8 +10,9 @@ import RxSwift
 import RxRelay
 import RxCocoa
 
-
 public class ViewModel {
+    
+    // MARK: - Properties
     
     private weak var delegate: ViewDelegate?
     private let disposeBag = DisposeBag()
@@ -22,14 +23,18 @@ public class ViewModel {
 
     private var databaseToken: DatabaseToken?
     
+    // MARK: - Constructors
+    
     public init() {
         let countryCode = Locale.current.languageCode ?? String(Locale.preferredLanguages[0].prefix(2))
         
         self.databaseToken = BankinManager.banksDatabaseTokens(completion: { banks in
+            // Group banks by country
             let banksGroupedByCountries = Dictionary(grouping: banks, by: { (element: Bank) in
                 return element.countryCode
             })
             
+            // Sort Countries to make local country first
             self.countries = banksGroupedByCountries.keys.sorted { lhs, rhs in
                 if lhs == countryCode.uppercased() {
                     return true
@@ -43,6 +48,7 @@ public class ViewModel {
             self.banks.accept(banksGroupedByCountries)
         })
         
+        // Listen to banks changes to setup global state
         self.banks
             .debounce(.seconds(2), scheduler: MainScheduler.instance)
             .subscribe(onNext: { banks in
@@ -55,6 +61,7 @@ public class ViewModel {
                 self.delegate?.reloadTableView()
             }).disposed(by: self.disposeBag)
 
+        // Listen to global state to call view delegate
         self.state.subscribe(onNext: { state in
             switch state {
             case .loading:
@@ -67,12 +74,16 @@ public class ViewModel {
         }).disposed(by: self.disposeBag)
     }
     
-    public func setupDelegate(delegate: ViewDelegate?) {
-        self.delegate = delegate
-    }
+    // MARK: - Life Cycle
     
     deinit {
         self.databaseToken?.invalidate()
+    }
+    
+    // MARK: - Public Methods
+    
+    public func setupDelegate(delegate: ViewDelegate?) {
+        self.delegate = delegate
     }
 
     public func loadingFlow() {

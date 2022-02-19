@@ -11,9 +11,13 @@ import RxSwift
 
 public class BaseNetwork {
 
+    // MARK: - Properties
+
     private var sessionManager: Alamofire.Session
     private var configuration: URLSessionConfiguration
     private var headers: HTTPHeaders
+    
+    // MARK: Constructor
 
     public init(disableCache: Bool = false) {
         self.configuration = URLSessionConfiguration.default
@@ -41,14 +45,21 @@ public class BaseNetwork {
         self.sessionManager = Alamofire.Session(configuration: self.configuration)
     }
 
-    /// Request without token
+    /// this method makes a request without any additional header
     ///
-    /// - Parameter urlRequest: a request
-    /// - Returns: An url request
+    /// - Parameter networkRouter: a formatted request
+    /// - Parameter timeout: Double
+    /// - Returns: Reactive<DataRequest>
     public func request(networkRouter: NetworkRouter, timeout: Double? = nil) -> Reactive<DataRequest> {
         return self.request(networkRouter: networkRouter, headers: [:], timeout: timeout)
     }
     
+    /// this method makes a request without additional headers
+    ///
+    /// - Parameter networkRouter: a formatted request
+    /// - Parameter headers: additional Headers
+    /// - Parameter timeout: Double
+    /// - Returns: Reactive<DataRequest>
     public func request(networkRouter: NetworkRouter, headers: [String: String], timeout: Double? = nil) -> Reactive<DataRequest> {
         let request = self.sessionManager.request("\(networkRouter.endpoint)\(networkRouter.path)",
             method: networkRouter.method,

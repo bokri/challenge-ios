@@ -10,13 +10,14 @@ import Realm
 import RealmSwift
 
 public class BanksWrapper: Object, Codable {
+    
+    // MARK: - Properties
+    
     @objc dynamic var id: Int = 0
     var resources: List<Bank> = List<Bank>()
     @objc dynamic var pagination: Pagination?
-
-    public override static func primaryKey() -> String? {
-        return "id"
-    }
+    
+    // MARK: - Constructors
     
     override init() {}
     
@@ -31,11 +32,22 @@ public class BanksWrapper: Object, Codable {
 
         self.pagination = try? container?.decode(Pagination.self, forKey: .pagination)
     }
+    
+    // MARK: - Realm Primary Key
+
+    public override static func primaryKey() -> String? {
+        return "id"
+    }
 }
 
 public class Pagination: Object, Codable {
+    
+    // MARK: - Properties
+    
     @objc dynamic var id: Int = 0
     @objc dynamic var nextUri: String?
+    
+    // MARK: - Constructors
     
     override init() {}
     
@@ -45,12 +57,16 @@ public class Pagination: Object, Codable {
         self.nextUri = try? container?.decode(String.self, forKey: .nextUri)
     }
 
-    public override static func primaryKey() -> String? {
-        return "id"
-    }
+    // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
         case id
         case nextUri = "next_uri"
+    }
+    
+    // MARK: - Realm Primary Key
+    
+    public override static func primaryKey() -> String? {
+        return "id"
     }
 }

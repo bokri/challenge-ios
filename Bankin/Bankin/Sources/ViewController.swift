@@ -9,10 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // MARK: - Properties
+
     private var loadingView: LoadingView
     private var errorView: ErrorView
     private var viewModel: ViewModel
     private var tableView: UITableView
+    
+    // MARK: - Constructors
     
     init() {
         self.loadingView = LoadingView()
@@ -32,6 +36,8 @@ class ViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Private Methods
     
     private func setupView() {
         self.loadingView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,27 +62,17 @@ class ViewController: UIViewController {
         self.errorView.allAnchors.constraint(equalTo: self.view.allAnchors).isActive(true)
         self.tableView.allAnchors.constraint(equalTo: self.view.allAnchors).isActive(true)
     }
+    
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offset: CGPoint                 = scrollView.contentOffset
-        let bounds: CGRect                  = scrollView.bounds
-        let size: CGSize                    = scrollView.contentSize
-        let inset: UIEdgeInsets             = scrollView.contentInset
-        let currentBottomOffset: CGFloat    = offset.y + bounds.size.height - inset.bottom
-        let height: CGFloat                 = size.height
+// MARK: - UITableViewDataSource
 
-        let distanceBeforeEndToLoadNext: CGFloat = 50.0
-        if currentBottomOffset >= height - distanceBeforeEndToLoadNext {
-            self.viewModel.loadNextPage()
-        }
-    }
-    
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
@@ -119,14 +115,32 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
         return cell
     }
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offset: CGPoint                 = scrollView.contentOffset
+        let bounds: CGRect                  = scrollView.bounds
+        let size: CGSize                    = scrollView.contentSize
+        let inset: UIEdgeInsets             = scrollView.contentInset
+        let currentBottomOffset: CGFloat    = offset.y + bounds.size.height - inset.bottom
+        let height: CGFloat                 = size.height
+
+        let distanceBeforeEndToLoadNext: CGFloat = 50.0
+        
+        // When scrolling attempts 50 pt before the end : Load next page
+        if currentBottomOffset >= height - distanceBeforeEndToLoadNext {
+            self.viewModel.loadNextPage()
+        }
+    }
 }
 
+// MARK: - ErrorViewDelegate
 extension ViewController: ErrorViewDelegate {
     func errorButtonTouchUp() {
         self.viewModel.loadingFlow()
     }
 }
 
+// MARK: - ViewDelegate
 extension ViewController: ViewDelegate {
     func showError() {
         self.errorView.isHidden = false

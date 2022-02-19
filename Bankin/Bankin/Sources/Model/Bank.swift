@@ -10,18 +10,25 @@ import RealmSwift
 import Realm
 
 public class Bank: Object, Codable {
+    
+    // MARK: - Properties
+
     @objc dynamic var id: Int = 0
     @objc dynamic var name: String = ""
     @objc dynamic var countryCode: String = ""
     @objc dynamic var logoUrl: String = ""
-
-    public override static func primaryKey() -> String? {
-        return "id"
-    }
+    
+    // MARK: - CodingKeys
     
     enum CodingKeys: String, CodingKey {
         case id, name
         case countryCode = "country_code"
         case logoUrl = "logo_url"
+    }
+    
+    // MARK: - Realm Primary Key
+
+    public override static func primaryKey() -> String? {
+        return "id"
     }
 }

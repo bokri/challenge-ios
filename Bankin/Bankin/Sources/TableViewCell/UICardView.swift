@@ -9,11 +9,11 @@ import UIKit
 
 public class UICardView: UIView {
 
-    // MARK: Properties
+    // MARK: - Properties
 
     public static let shadowOpacity: Float = 0.2
 
-    // MARK: Constructors
+    // MARK: - Constructors
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
