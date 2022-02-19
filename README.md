@@ -1,5 +1,29 @@
 # iOS Challenge
 
+## Screenshots
+
+#### Success State in Light and Dark Appearances
+
+![Alt text](/Screenshots/1.png?raw=true "Light Success")
+
+![Alt text](/Screenshots/2.png?raw=true "Dark Success")
+
+#### Loading State in Light and Dark Appearances with a Lottie animation
+
+![Alt text](/Screenshots/3.png?raw=true "Light Loading")
+
+![Alt text](/Screenshots/4.png?raw=true "Dark Loading")
+
+#### Error State in Light and Dark Appearances with a Lottie animation
+
+![Alt text](/Screenshots/5.png?raw=true "Light Error")
+
+![Alt text](/Screenshots/6.png?raw=true "Dark Error")
+
+#### Splash Screen
+
+![Alt text](/Screenshots/7.png?raw=true "Splash Screen")
+
 ## Coding Test
 
 #### *Brief*
